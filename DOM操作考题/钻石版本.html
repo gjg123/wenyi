@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>dom操作考核</title>
+    <link rel="stylesheet" type="text/css" href="common.css" />
+</head>
+
+<body>
+    <div class="add-main">
+        <p class="add-title">＋添加组员</p>
+        <ul>
+            <li class="commont-input">
+                <span>姓名：</span>
+                <div class="imitate-input" id="userName">请您选择姓名</div>
+                <div class="select-list">
+                </div>
+            </li>
+            <li class="commont-input">
+                <span>性别：</span>
+                <div class="imitate-input" id="sex">请您选择性别</div>
+                <div class="select-list">
+                </div>
+            </li>
+            <li class="commont-input">
+                <span>年龄：</span>
+                <div class="imitate-input" id="age">请您选择年龄</div>
+                <div class="select-list">
+                </div>
+            </li>
+            <li class="commont-input"></li>
+            <li class="commont-input"> <span>组名：</span>
+                <div class="imitate-input" id="group">请您选择小组</div>
+                <div class="select-list"></div>
+            </li>
+            <li class="commont-input">
+                <span>上传头像：</span>
+                <div class="uplond-img">
+                    <img src="upload.png" id="avatar" />
+                    <input type="file" onchange="getPhoto(this)" />
+                </div>
+            </li>
+            <input type="button" value="确认添加" id="J_addPerson" class="common-btn" />
+            <br class="clear">
+        </ul>
+    </div>
+    <div class="sort-main">
+        <span class="common-btn2" id="age_sort">年龄排序</span>
+        <span class="common-btn2" id="group_sort">组别排序</span>
+        <span class="common-btn2" id="J_exprotWord">导出excel</span>
+        <br class="clear">
+    </div>
+    <table cellpadding="0" cellspacing="0" id="table">
+        <thead>
+            <tr>
+                <td width="8%"> 选择 </td>
+                <td width="10%">姓名</td>
+                <td width="10%">性别</td>
+                <td width="10%">年龄</td>
+                <td width="10%">组名</td>
+                <td>头像</td>
+                <td width="10%">操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="radio" /> </td>
+                <td>杨老湿</td>
+                <td>男</td>
+                <td>23</td>
+                <td>二组</td>
+                <td><img src="wyz.jpeg" /></td>
+                <td>
+                    <input type="button" value="删除" onclick="delTd(this)" class="btn-delete" />
+                    <input type="button" value="更改" onclick="updateTd(this)" class="btn-update" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" /> </td>
+                <td>杨老湿</td>
+                <td>男</td>
+                <td>20</td>
+                <td>三组</td>
+                <td><img src="wyz.jpeg" /></td>
+                <td>
+                    <input type="button" value="删除" onclick="delTd(this)" class="btn-delete" />
+                    <input type="button" value="更改" onclick="updateTd(this)" class="btn-update" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" /> </td>
+                <td>杨老湿</td>
+                <td>男</td>
+                <td>19</td>
+                <td>四组</td>
+                <td><img src="wyz.jpeg" /></td>
+                <td>
+                    <input type="button" value="删除" onclick="delTd(this)" class="btn-delete" />
+                    <input type="button" value="更改" onclick="updateTd(this)" class="btn-update" />
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr align="right">
+                <td colspan="3">
+                    <input type="button" value="全选" id="J_radio" class="our-input" />
+                    <input type="button" value="取消全选" id="J_removeRadio" class="our-input" />
+                    <input type="button" value="选中删除" id="J_deleteRemove" class="our-input del" />
+                </td>
+                <td colspan="4" align="right" id="J_footer">
+                    <div id="J_sortBtn">
+                        <!--<input type="button" value="1" class="sort-btn" />
+                        <input type="button" value="尾页" class="sort-btn" />
+                        <br class="clear">-->
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="layer-main">
+        <span id="J_close" class="common-btn">关闭</span>
+        <div class="commont-input">
+            <span>姓名：</span>
+            <div class="imitate-input">请您选择姓名</div>
+            <div class="select-list">
+            </div>
+        </div>
+        <div class="commont-input">
+            <span>性别：</span>
+            <div class="imitate-input">请您选择性别</div>
+            <div class="select-list">
+            </div>
+        </div>
+        <div class="commont-input">
+            <span>年龄：</span>
+            <div class="imitate-input">请您选择年龄</div>
+            <div class="select-list">
+            </div>
+        </div>
+        <div class="commont-input">
+            <span>组名：</span>
+            <div class="imitate-input">请您选择小组</div>
+            <div class="select-list">
+            </div>
+        </div>
+        <div class="commont-input">
+            <span>上传头像：</span>
+            <div class="uplond-img">
+                <img src="upload.png" id="update_img" />
+                <input type="file" onchange="getPhoto(this)" />
+            </div>
+        </div>
+        <input type="button" value="更新" id="J_updatePerson" class="common-btn" />
+    </div>
+    <div id="J_storage"></div>
+</body>
+
+</html>
+<script src="js/Blob.js"></script>
+<script src="js/FileSaver.js"></script>
+<script src="js/tableExport.js"></script>
+<script type="text/javascript">
+//存储tr
+var storageTrList = [];
+//导出excel
+var $exportLink = document.getElementById('J_exprotWord');
+$exportLink.onclick = function() {
+    tableExport('table', '班级表', 'xls');
+}
+window.onload = function() {
+        //添加组员
+        addPerson();
+        //全选  取消全选 删除选中功能
+        selectPlan();
+        //渲染下拉数据
+        ajaxClass();
+        //弹层相关功能
+        layerPlan();
+        //修改单个td
+        updateSingleTd();
+        //组名和年龄排序
+        sortPlan();
+        //默认存储已有的tr
+        var nd_tr_all = document.querySelectorAll('#table tbody tr');
+        for (var i = 0; i < nd_tr_all.length; i++) {
+            storageTrList.unshift(nd_tr_all[i]);
+        }
+    }
+    //请求拿到班级数据
+function ajaxClass() {
+    //创建 XMLHttpRequest 对象
+    var ajax = new XMLHttpRequest();
+    //配置请求参数
+    ajax.open('get', 'class.json', true);
+    //发送请求
+    ajax.send();
+    //回调函数
+    ajax.onreadystatechange = function() {
+        //ajax.readyState监控请求状态 4请求已完成，且响应已就绪
+        if (ajax.readyState == 4) {
+            //ajax.responseText 获得字符串形式的响应数据。
+            var resp = JSON.parse(ajax.responseText);
+            selectData(resp.data.first, 0);
+            selectData(resp.data.second, 0);
+            selectData(resp.data.third, 0);
+            selectData(resp.data.fourth, 0);
+            selectData(resp.data.sex, 1);
+            selectData(resp.data.age, 2);
+            selectData(resp.data.group, 3);
+            //更改弹框里面配置数据
+            selectData(resp.data.first, 4);
+            selectData(resp.data.second, 4);
+            selectData(resp.data.third, 4);
+            selectData(resp.data.fourth, 4);
+            selectData(resp.data.sex, 5);
+            selectData(resp.data.age, 6);
+            selectData(resp.data.group, 7);
+            document.getElementById('group').setAttribute('data-group', resp.data.group);
+            //选择人员下拉框相关功能
+            selectEvent();
+        }
+    }
+}
+//处理添加select的option标签
+function selectData(data, type) {
+    var option = null;
+    for (var i = 0; i < data.length; i++) {
+        option = document.createElement('span');
+        if (type == 0 || type == 4) {
+            option.innerHTML = data[i].name;
+        } else {
+            option.innerHTML = data[i];
+        }
+        document.querySelectorAll('.select-list')[type].appendChild(option);
+    }
+}
+//组名和年龄排序
+function sortPlan() {
+    //年龄排序
+    var nd_age_sort = document.getElementById('age_sort');
+    var nd_td_gather = document.querySelector('#table tbody');
+    nd_age_sort.onclick = function() {
+            var new_td_gather = ageSort(nd_td_gather.querySelectorAll('tr'));
+            nd_td_gather.innerHTML = "";
+            for (var i = 0; i < new_td_gather.length; i++) {
+                nd_td_gather.appendChild(new_td_gather[i]);
+            }
+        }
+        //组名排序
+    var nd_group_sort = document.getElementById('group_sort');
+    nd_group_sort.onclick = function() {
+        var trAll = groupSort(nd_td_gather.querySelectorAll('tr'));
+        nd_td_gather.innerHTML = "";
+        for (var i = 0; i < trAll.length; i++) {
+            for (var j = 0; j < trAll[i].length; j++) {
+                if (trAll[i][j]) {
+                    nd_td_gather.appendChild(trAll[i][j]);
+                }
+            }
+        }
+    }
+}
+//年龄排序方法
+function ageSort(trAll) {
+    var tr = Array.prototype.slice.call(trAll);;
+    var len = tr.length - 1;
+    for (var i = 0; i < len; i++) {
+        for (var j = 0; j < len - i; j++) {
+            if (tr[j].querySelectorAll('td')[3].innerHTML > tr[j + 1].querySelectorAll("td")[3].innerHTML) {
+                var temp = tr[j];
+                tr[j] = tr[j + 1];
+                tr[j + 1] = temp;
+            }
+        }
+    }
+    return tr;
+}
+//组名排序
+function groupSort(tr) {
+    //排序的要求
+    var sortAsk = document.getElementById('group').getAttribute('data-group').split(',');
+    var arr = [];
+    for (var i = 0; i < sortAsk.length; i++) {
+        arr[i] = [];
+    }
+    for (var j = 0; j < tr.length; j++) {
+        for (var s = 0; s < sortAsk.length; s++) {
+            if (tr[j].querySelectorAll('td')[4].innerHTML == sortAsk[s]) {
+                arr[s][arr[s].length] = tr[j];
+            }
+        }
+    }
+    return arr;
+}
+//下拉框绑定点击事件
+function selectEvent() {
+    var nd_select_all = document.querySelectorAll('.imitate-input');
+    for (var i = nd_select_all.length - 1; i >= 0; i--) {
+        nd_select_all[i].onclick = function() {
+            //默认先隐藏显示的
+            for (var l = 0; l < nd_select_all.length; l++) {
+                nd_select_all[l].style.display = "none";
+            }
+            //显示当前点击的
+            this.nextSibling.nextSibling.style.display = "block";
+        }
+    }
+    //下拉框里面span绑定事件
+    var nd_select_all = document.querySelectorAll('.select-list');
+    var nd_alone = null;
+    for (var p = 0; p < nd_select_all.length; p++) {
+        nd_alone = nd_select_all[p].querySelectorAll('span');
+        for (var t = 0; t < nd_alone.length; t++) {
+            nd_alone[t].onclick = function() {
+                this.parentNode.style.display = "none";
+                this.parentNode.previousSibling.previousSibling.innerHTML = this.innerHTML;
+                if (nd_select_all[ndIndex(this.parentNode, nd_select_all) + 1]) {
+                    nd_select_all[ndIndex(this.parentNode, nd_select_all) + 1].style.display = "block";
+                }
+            }
+        }
+    }
+}
+//更改td
+function updateTd(cur) {
+    //获取更改弹层
+    var nd_layer = document.querySelector('.layer-main');
+    //获取弹层select集合
+    var nd_layer_select = nd_layer.querySelectorAll('.imitate-input');
+    //显示更改弹层
+    nd_layer.style.display = "block";
+    //给layer设置一个标识
+    nd_layer.setAttribute('data-index', ndIndex(cur.parentNode.parentNode, document.querySelectorAll('#table tbody tr')));
+    //获取当前点击更改这列td的集合
+    var nd_td_all = cur.parentNode.parentNode.getElementsByTagName('td');
+    //循环把当前点击td赋值给更改select
+    for (var i = 0; i < nd_td_all.length; i++) {
+        if (i != 0 && i != nd_td_all.length - 1) {
+            if (nd_td_all[i].querySelector('img')) {
+                console.log(nd_td_all[i].querySelector('img').getAttribute('src'));
+                document.getElementById('update_img').setAttribute('src', nd_td_all[i].querySelector('img').getAttribute('src'));
+            } else {
+                nd_layer_select[i - 1].innerText = nd_td_all[i].innerText;
+            }
+        }
+    }
+}
+//双击修改单个td
+function updateSingleTd() {
+    //双击更改td内容
+    var nd_tbody_tr_all = document.querySelectorAll('#table tbody tr');
+    var nd_tbody_td_all = null;
+    for (var p = 0; p < nd_tbody_tr_all.length; p++) {
+        nd_tbody_td_all = nd_tbody_tr_all[p].querySelectorAll('td');
+        for (var s = 0; s < nd_tbody_td_all.length; s++) {
+            if (s != 0 && s != nd_tbody_td_all.length - 1 && !nd_tbody_td_all[s].querySelector('img')) {
+                //给每一个td绑定双击事件
+                nd_tbody_td_all[s].ondblclick = function() {
+                    if (!this.querySelector('input')) {
+                        this.innerHTML = '<input type="input" onblur="tdblur(this)" value=' + this.innerHTML + ' >';
+                        this.querySelector('input').focus();
+                    }
+                }
+            }
+        }
+    }
+}
+//给每一个td绑定焦点事件
+function tdblur(cur) {
+    cur.parentNode.innerHTML = cur.value;
+}
+//返回dom索引
+function ndIndex(cur, obj) {
+    for (var i = 0; i < obj.length; i++) {
+        if (cur == obj[i]) {
+            return i;
+        }
+    }
+}
+//弹层相关功能
+function layerPlan() {
+    //关闭弹层
+    var nd_close = document.getElementById('J_close');
+    //获取更改弹层
+    var nd_layer = document.querySelector('.layer-main');
+    //获取弹层select集合
+    var nd_layer_select = nd_layer.querySelectorAll('.imitate-input');
+    nd_close.onclick = function() {
+            nd_layer.style.display = "none";
+        }
+        //保存修改内容
+    var nd_save = document.getElementById('J_updatePerson');
+    nd_save.onclick = function() {
+        //获取关联tr索引
+        var index = nd_layer.getAttribute('data-index');
+        //获取td集合
+        var nd_td_all = document.querySelectorAll('#table tbody tr')[index].querySelectorAll('td');
+        //循环讲select选择的内容赋值给td
+        for (var i = 0; i < nd_td_all.length; i++) {
+            if (i != 0 && i != nd_td_all.length - 1) {
+                if (nd_td_all[i].querySelector('img')) {
+
+                    nd_td_all[i].querySelector('img').setAttribute('src', document.getElementById('update_img').getAttribute('src'));
+
+                } else {
+                    nd_td_all[i].innerText = nd_layer_select[i - 1].innerText;
+                }
+            }
+        }
+        //隐藏弹层
+        nd_layer.style.display = "none";
+    }
+}
+//添加组员
+function addPerson() {
+    //获取添加组员按钮
+    var nd_addPerson = document.getElementById('J_addPerson');
+    //提前定义获取姓名
+    var nd_name = null;
+    //提前定义获取性别
+    var nd_sex = null;
+    //提前定义年纪
+    var nd_age = null;
+    //提前定义组名
+    var nd_group = null;
+    //提前定义头像
+    // var nd_age = null;
+    //绑定事件
+    nd_addPerson.onclick = function() {
+        nd_name = document.getElementById('userName').innerHTML.trim();
+        nd_sex = document.getElementById('sex').innerHTML.trim();
+        nd_age = document.getElementById('age').innerHTML.trim();
+        nd_group = document.getElementById('group').innerHTML.trim();
+
+        if (nd_name != "" && nd_sex != "" && nd_age != "" && nd_group != "") {
+            //动态创建tr
+            var nd_tr = document.createElement('tr');
+            //添加第一个带选项的td
+            addTd('start', nd_tr);
+            addTd(nd_name, nd_tr);
+            addTd(nd_sex, nd_tr);
+            addTd(nd_age, nd_tr);
+            addTd(nd_group, nd_tr);
+            addTd('img', nd_tr);
+            //添加最后一个删除的td
+            addTd('end', nd_tr);
+            storageTrList.unshift(nd_tr);
+            //创建的tr插入tbody里面
+            document.querySelector('#table tbody').insertBefore(nd_tr, document.querySelectorAll('#table tbody tr')[0]);
+            updateSingleTd();
+            autoPage();
+        } else {
+            alert('内容不能为空');
+        }
+    }
+}
+//动态添加td
+function addTd(value, tr) {
+    var nd_avatar = document.getElementById('avatar').getAttribute('src');
+    var nd_td = document.createElement('td');
+    if (value == 'start') {
+        nd_td.innerHTML = "<input type=\"radio\" />";
+    } else if (value == 'end') {
+        nd_td.innerHTML = '<input type="button" value="删除" onclick="delTd(this)" class="btn-delete"/><input type="button" value="更改" onclick="updateTd(this)" class="btn-update"/>';
+    } else if (value == 'img') {
+        nd_td.innerHTML = "<img src=" + nd_avatar + " >";
+    } else {
+        nd_td.innerHTML = value;
+    }
+    tr.appendChild(nd_td);
+}
+//删除td功能
+function delTd(cur) {
+    cur.parentNode.parentNode.remove();
+}
+//全选  取消全选 删除选中功能
+function selectPlan() {
+    //取消全选
+    var nd_cancelSelect = document.getElementById('J_removeRadio');
+    nd_cancelSelect.onclick = function() {
+            radioPlan(false, 0);
+        }
+        //全选
+    var nd_select = document.getElementById('J_radio');
+    nd_select.onclick = function() {
+            radioPlan(true, 0);
+        }
+        //删除选中
+    var nd_delSelect = document.getElementById('J_deleteRemove');
+    nd_delSelect.onclick = function() {
+        radioPlan(0, 1);
+    }
+}
+//操作单选框
+function radioPlan(state, type) {
+    var nd_radio_all = document.querySelectorAll("input[type='radio']");
+    for (var i = 0; i < nd_radio_all.length; i++) {
+        if (type == 0) {
+            nd_radio_all[i].checked = state;
+        } else {
+            if (nd_radio_all[i].checked) {
+                nd_radio_all[i].parentNode.parentNode.remove();
+            }
+        }
+    }
+}
+//自动分页功能
+function autoPage() {
+    var nd_tr_all = storageTrList;
+    var nd_num = Math.ceil(nd_tr_all.length / 3);
+    var nd_footer = document.querySelector('#J_sortBtn');
+    storageTr = [];
+    if (nd_num > 1) {
+        var number = 0;
+        document.querySelector('#table tbody').innerHTML = null;
+        for (var p = 0; p < nd_tr_all.length; p++) {
+            number = parseInt(p / 3);
+            if (!number) {
+                document.querySelector('#table tbody').appendChild(nd_tr_all[p]);
+            }
+            if (!storageTr[number]) {
+                storageTr[number] = [];
+            }
+            storageTr[number].push(nd_tr_all[p]);
+            storageTrList[nd_tr_all[p]];
+        }
+
+        var sortBtn = "<input type=\"button\" value=\"首页\"  class=\"sort-btn home-page\" >";
+        for (var i = 0; i < nd_num; i++) {
+        		if(i+1 == 1){
+           	 	sortBtn += "<input type=\"button\" value=" + (i + 1) + "  class=\"sort-btn active\">";
+        		}else{
+           	 	sortBtn += "<input type=\"button\" value=" + (i + 1) + "  class=\"sort-btn\">";
+        		}
+        }
+        sortBtn += "<input type=\"button\" value=\"尾页\"  class=\"sort-btn\">";
+        nd_footer.innerHTML = sortBtn;
+    }
+    //事件委托
+    var nd_footer_td = document.getElementById('J_footer');
+    nd_footer_td.onclick = function(event) {
+        var ev = event || window.event;
+        var target = ev.target || ev.srcElement;
+        if (target.classList.contains('sort-btn')) {
+        		var nd_btn = document.querySelectorAll('.sort-btn');
+        		for(var i=0;i<nd_btn.length;i++){
+        			if(nd_btn[i].className.indexOf('active') >= 0 ){
+        				nd_btn[i].className = nd_btn[i].className.replace(new RegExp("(^| +)active( +|$)",'g'),'')
+        			}
+        		}
+        	
+        	
+        		target.className += ' active';
+            showTr(target.value);
+            
+        }
+    }
+
+    function showTr(type) {
+        var nd_tbody = document.querySelector('#table tbody');
+        var nd_homePage = document.querySelector('.home-page');
+        var trRow = [];
+        if (type == "首页") {
+            trRow.push(storageTr[0]);
+        } else if (type == "尾页") {
+            if (nd_homePage.style.display == "none") {
+                nd_homePage.style.display = "block";
+            }
+            trRow.push(storageTr[storageTr.length - 1]);
+        } else {
+            if (nd_homePage.style.display == "none") {
+                nd_homePage.style.display = "block";
+            }
+            trRow.push(storageTr[parseInt(type) - 1]);
+        }
+        nd_tbody.innerHTML = null;
+        for (var i = 0; i < trRow.length; i++) {
+            for (var p = 0; p < trRow[i].length; p++) {
+                nd_tbody.appendChild(trRow[i][p]);
+            }
+
+        }
+    }
+}
+//上传图片
+function getPhoto(node) {
+    var imgURL = "";
+    try {
+        var file = null;
+        if (node.files && node.files[0]) {
+            file = node.files[0];
+        } else if (node.files && node.files.item(0)) {
+            file = node.files.item(0);
+        }
+        //Firefox 因安全性问题已无法直接通过input[file].value 获取完整的文件路径  
+        try {
+            imgURL = file.getAsDataURL();
+        } catch (e) {
+            imgRUL = window.URL.createObjectURL(file);
+        }
+    } catch (e) {
+        if (node.files && node.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                imgURL = e.target.result;
+            };
+            reader.readAsDataURL(node.files[0]);
+        }
+    }
+    node.previousSibling.previousSibling.setAttribute('src', imgRUL);
+}
+</script>

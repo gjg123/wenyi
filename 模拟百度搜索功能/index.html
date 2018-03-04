@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.J_search{
+				float: left;
+				width: 80%;
+				height: 40px;
+				display: block;
+				line-height: 40px;
+				/*margin:0 auto;*/
+				padding: 0 15px;
+				
+				border:1px solid #dfdfdf;
+			}
+			.J_select{
+				
+				display: none;
+				margin:0 auto;
+				width: 70%;
+				padding: 0 15px;
+				border:1px solid #dfdfdf;
+			}
+			
+			.J_btn{
+				float: left;
+			    width: 100px;
+			    height: 42px;
+			    color: #fff;
+			    font-size: 15px;
+			    letter-spacing: 1px;
+			    background: #3385ff;
+			    border-bottom: 1px solid #2d78f4;
+			    outline: medium;
+			    -webkit-appearance: none;
+			    -webkit-border-radius: 0;
+			    border:none;
+			}
+			.J_select span,.J_history span{
+				color: #000;
+				display: block;
+				padding: 0 10px;
+				height: 40px;
+				line-height: 40px;
+				border-bottom:1px solid #dfdfdf;
+			}
+			.J_history{
+				color: #fff;
+				margin:20px auto;
+				width: 300px;
+				background: #000;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text"  class="J_search" />
+		<input type="button"  value="盘古一下" class="J_btn"/>
+		<div style="clear: both;"></div>
+		
+		
+		<div class="J_select">
+			<span>1</span>
+			<span>1</span>
+			<span>1</span>
+			<span>1</span>
+			<span>1</span>
+		</div>
+		
+		<p style="text-align: center;">历史记录</p>
+		<div class="J_history">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	
+	window.localStorage.clear("arr");
+	//https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=111&cb=callback
+	
+	//获取搜索框
+	var nd_search = document.querySelector(".J_search");
+	//绑定键盘弹起事件
+	nd_search.onkeyup  = function(){
+		//请求最新数据
+		var script = document.createElement('script');
+		script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.value+'&cb=callback';
+		document.head.appendChild(script);
+		
+	}
+	
+	//搜索功能
+	var nd_btn = document.querySelector(".J_btn");
+	nd_btn.onclick = function(){
+		//获取本地存储
+		var localArr = JSON.parse(window.localStorage.getItem('arr'));
+		var arr = [];
+		if(localArr){
+			//执行一个添加数组的方法
+			localArr.push(nd_search.value);
+			if(localArr.length > 3){
+			 	localArr.shift();
+			}
+			//把数组赋值给arr
+			arr = localArr;
+		}else{
+			arr.push(nd_search.value);
+		}
+		window.localStorage.setItem('arr',  JSON.stringify(arr) );
+		
+	}
+	
+	//解析并渲染到页面
+	function callback(resp){
+		var data = resp.s;
+		var spanHTML = "";
+		data.forEach(function(text,index){
+			spanHTML += "<span>"+text+"</span>";
+		})
+		document.querySelector(".J_select").innerHTML = spanHTML;
+		document.querySelector(".J_select").style.display = "block";
+	}
+	
+	
+	
+	
+	
+	
+</script>

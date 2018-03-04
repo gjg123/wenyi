@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.box{
+				width:600px;
+				height:300px;
+				border:1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="file" />
+		<button>点我读取</button>
+		<div class="box"></div>
+	</body>
+	<script type="text/javascript">
+		
+		var btn=document.querySelector("button")
+		var files=document.querySelector("input")
+		var div=document.querySelector("div")
+		btn.addEventListener("click",function(){
+			//获取用户上传的第一个文件（数据）
+			var data=files.files[0]
+			//创建读取文件对象
+			var fr=new FileReader()
+			//将上传的文件进行转换    转换成URL的形式   这样后面就可以直接用了
+			fr.readAsDataURL(data)
+			//检测文件是否加载完毕     绑定加载事件
+			fr.addEventListener("load",function(){
+				//读取完毕之后拿到上传文件的路径
+				var result=fr.result;
+				var img=document.createElement("img")
+				img.src=result
+				div.appendChild(img)
+			})
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</script>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>青铜dom考核</title>
+	<style type="text/css">
+		.add-main{
+			width: 1000px;
+			margin:20px auto 30px;
+			border-bottom: 1px solid #dcdcdc;
+			padding-bottom: 20px;
+			overflow: hidden;
+		}
+		.commont-input{
+			float: left;
+			margin-left: 20px;
+		}
+		.commont-input input{
+			height: 25px;
+		}
+		.common-btn{
+			padding: 6px 10px;
+			line-height: 100%;
+			color: #fff;
+			text-align: center;
+			background: #44adfb;
+			border: 1px solid #44adfb;
+			margin-left: 20px;
+			border-radius: 4px;
+		}
+		#table{
+			width: 1000px;
+			margin:0 auto;
+			border:1px solid #dcdcdc;
+			border-collapse:collapse;
+		}
+		#table thead td{
+			height: 40px;
+			line-height: 40px;
+			background: yellow;
+			color: #000;
+			font-size:20px;
+			font-weight: bold;
+			border:1px solid #dcdcdc;
+			text-align: center;
+		}
+		#table tbody td{
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			border:1px solid #dcdcdc;
+		}
+		#table tfoot tr{
+			height: 40px;
+		}
+		#table tfoot td input{
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			background: #44ADFB;
+			border:1px solid #44ADFB;
+			border-radius: 4px;
+			color: #fff;
+			text-align: center;
+			float: right;
+			margin-right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="add-main">
+		<div class="commont-input">
+			<span>姓名：</span>
+			<input type="text" id="userName"/>
+		</div>
+		<div class="commont-input">
+			<span>性别：</span>
+			<input type="text" id="sex"/>
+		</div>
+		<div class="commont-input">
+			<span>年龄：</span>
+			<input type="text" id="age"/>
+		</div>
+		<div class="commont-input">
+			<span>组名：</span>
+			<input type="text" id="group"/>
+		</div>
+		<input  type="button" value="添加组员" id="J_addPerson" class="common-btn"/>
+
+	</div>
+	<table id="table">
+		<thead>
+			<tr>
+				<td> 选择 </td>
+				<td>姓名</td>
+				<td>性别</td>
+				<td>年龄</td>
+				<td>组名</td>
+				<td>操作</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td> <input type="radio" /> </td>
+				<td>杨老湿</td>
+				<td>男</td>
+				<td>18</td>
+				<td>无组</td>
+				<td>
+					<input type="button" value="删除" onclick="delTd(this)" class="btn-delete"/>
+				</td>
+			</tr>
+
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="6">
+					<input type="button" value="选中删除" id="J_deleteRemove" />
+					<input type="button" value="全选" id="J_radio"/>
+					<input type="button" value="取消全选" id="J_removeRadio"/>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+
+</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		//添加组员
+		addPerson();
+		//全选  取消全选 删除选中功能
+		selectPlan();
+		
+	}
+	//添加组员
+	function addPerson(){
+		//获取添加组员按钮
+		var nd_addPerson = document.getElementById('J_addPerson');
+		//提前定义获取姓名
+		var nd_name = null;
+		//提前定义获取性别
+		var nd_sex = null;
+		//提前定义年纪
+		var nd_age = null;
+		//提前定义组名
+		var nd_age = null;
+		//绑定事件
+		nd_addPerson.onclick = function(){
+			nd_name = document.getElementById('userName').value.trim();
+			nd_sex = document.getElementById('sex').value.trim();
+			nd_age = document.getElementById('age').value.trim();
+			nd_group = document.getElementById('group').value.trim();
+			if(nd_name != "" && nd_sex != "" && nd_age != "" && nd_group!= ""){
+				//动态创建tr
+				var nd_tr = document.createElement('tr');
+				//添加第一个带选项的td
+				addTd('start',nd_tr);
+				addTd(nd_name,nd_tr);
+				addTd(nd_sex,nd_tr);
+				addTd(nd_age,nd_tr);
+				addTd(nd_group,nd_tr);
+				//添加最后一个删除的td
+				addTd('end',nd_tr);
+				//创建的tr插入tbody里面
+				document.querySelector('#table tbody').appendChild(nd_tr);
+			}else{
+				alert('内容不能为空');
+			}
+		}
+	}
+	//动态添加td
+	function addTd(value,tr){
+		var nd_td = document.createElement('td');
+		if(value  == 'start'){
+			nd_td.innerHTML = "<input type=\"radio\" />";
+		}else if(value == 'end'){
+			nd_td.innerHTML = '<input type="button" value="删除" onclick="delTd(this)" class="btn-delete"/>';
+		}else{
+			nd_td.innerHTML = value;
+		}
+		tr.appendChild(nd_td);
+	}
+	//删除td功能
+	function delTd(cur){
+		cur.parentNode.parentNode.remove();
+	}
+	//全选  取消全选 删除选中功能
+	function selectPlan(){
+		//取消全选
+		var nd_cancelSelect = document.getElementById('J_removeRadio');
+		nd_cancelSelect.onclick = function(){
+			radioPlan(false,0);
+		}
+		//全选
+		var nd_select = document.getElementById('J_radio');
+		nd_select.onclick = function(){
+			radioPlan(true,0);
+		}
+		//删除选中
+		var nd_delSelect = document.getElementById('J_deleteRemove');
+		nd_delSelect.onclick = function(){
+			radioPlan(0,1);
+		}
+	}
+	//操作单选框
+	function radioPlan(state,type){
+		var nd_radio_all = document.querySelectorAll("input[type='radio']");
+		for(var i=0;i<nd_radio_all.length;i++){
+			if(type == 0){
+				nd_radio_all[i].checked = state;
+			}else{
+			  if(nd_radio_all[i].checked){
+			  	nd_radio_all[i].parentNode.parentNode.remove();
+			  }
+			}
+		}
+	}
+
+
+/*	var a;
+alert(a);
+a = 1;*/
+
+</script>

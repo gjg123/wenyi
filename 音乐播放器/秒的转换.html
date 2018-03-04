@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		
+		function timeFormate(time){
+			if (time>=3600){
+				var hour=parseInt(time/3600);
+				var minute=parseInt(time%3600/60)
+				var second=parseInt(time%3600)
+				minute=minute>=10?minute:"0"+minute;
+				second=second>=10?second:"0"+second;
+				hour=hour>=10?hour:"0"+hour;
+				console.log(hour+":"+minute+":"+second)
+				return hour+":"+minute+":"+second;
+				
+			}else {
+				var minute=parseInt(time/60)
+				var second=parseInt(time%60)
+				minute=minute>=10?minute:"0"+minute;
+				second=second>=10?second:"0"+second;
+				console.log(minute+":"+second)
+				return minute+":"+second;
+			}
+		}
+		timeFormate(600)
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</script>
+</html>

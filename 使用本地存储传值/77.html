@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title></title>
+	</head>
+	<body>
+			<script type="text/javascript">
+//			console.log(window.location);
+//			取出参数部分(包含问号)
+			var url = window.location.search;
+			console.log(url);//?name=qwe&password=123
+			
+			//创建对象,存储最终结果
+			//指示创建了一个空对象   用来在      后面接收   最终的结果
+			var request = new Object();			
+			//处理问号
+			if(url.indexOf("?")!=-1){
+				//截取字符串
+				var str = url.substring(1);
+				console.log(str);//name=qwe&password=123
+				var strs = str.split("&");
+				console.log(strs);
+				//name=qwe   password=123
+				//遍历当前数组
+				for(var i=0;i<strs.length;i++){
+                     //str[0].split("=")[0];//name   qwe
+					 //str[1].split("=");//password   123
+					request[strs[i].split("=")[0]]=strs[i].split("=")[1];
+				}
+				
+				console.log(request);
+				console.log(request.name);
+				console.log(request.password);
+			}
+	
+			</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title></title>
+	</head>
+	<body>
+			姓名: <input type="text" name="" id="name" value="" required="required" placeholder="输入姓名"/>
+		<p></p>
+		密码: <input type="password" name="" id="pwd" value="" required="required" placeholder="输入密码"/>
+		
+		<input type="button" name="" id="" value="提交"  onclick="subValue()"/>
+		
+		<script type="text/javascript">
+			function subValue(){
+				var name = document.querySelector("#name");
+				var pwd = document.querySelector("#pwd");
+				
+				var url = "77.html?name="+name.value;
+				url+= "&password="+pwd.value;
+				
+				window.location.href=url;
+			}
+		</script>
+	</body>
+</html>

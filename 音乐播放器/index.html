@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	
+		<link rel="stylesheet" type="text/css" href="fontAwesome/css/font-awesome.css"/>
+		<style>
+			ul{
+				list-style: none;
+				margin:0;
+				padding:0;
+			}
+			body{
+				background-color:pink;
+				margin:0;
+				padding:0;
+			}
+			.music{
+				width:700px;
+				height:380px;
+				background-color:#000;
+				margin:100px auto;
+				opacity: 0.9;
+				border-radius: 10%;
+				
+			}
+			.music_info{
+				width:500px;
+				height:150px;
+				background-color:purple;
+				border-radius: 20%;
+				position: relative;
+			}
+			.music_controls{
+				width:500px;
+				height:210px;
+				background-color:green;
+				border-radius: 20%;
+				position: relative;
+			}
+			
+			.play_list_area{
+				width:200px;
+				height:360px;
+				background-color:darkgoldenrod;
+				float:right;
+				border-radius: 20%;
+				/*display: none;*/
+				
+			}
+	
+			.left_photo{
+				width:100px;
+				height:100px;
+				border-radius: 50%;
+		
+				position: absolute;
+				top:15%;
+				left:20px;
+				
+			}
+			.left_photo_animation{
+				width:100px;
+				height:100px;
+				border-radius: 50%;
+		
+				position: absolute;
+				top:15%;
+				left:20px;
+				animation:z 4s linear infinite;
+			}
+			
+			@keyframes z{
+				0%{
+					transform: rotate(0deg);
+				}
+				50%{
+					transform: rotate(180deg);
+				}
+				100%{
+					transform: rotate(360deg);
+				}
+			}
+
+			.center_list{
+				width:120px;
+				height:100px;
+				border:3px solid red;
+				position: absolute;
+				top:15%;
+				left:190px;
+			}
+			#music_author{
+				font-size: 16px;
+				display: block;
+				height:30px;
+				line-height: 30px;
+				color:gold;
+				text-align: center;
+				
+			}
+			#music_name{
+				font-size: 20px;
+				display: block;
+				height:40px;
+				line-height: 40px;
+				color:yellow;
+				text-align: center;
+				
+			}
+			.right_btn{
+				width:30px;
+				height:100px;
+				position: absolute;
+				right:20px;
+				top:15%;
+				border:2px solid red;
+				background-color:#000;
+				text-align: center;
+				padding-top:15px;
+				box-sizing: border-box;
+				
+			}
+			.process{
+				width:500px;
+				height:5px;
+				background-color:darkblue;
+				position: absolute;
+				bottom:0;
+			}
+			.process_slide{
+				display: block;
+				width:500px;
+				height:5px;
+				background-color:gold;
+				
+			}
+			.time{
+				width:500px;
+				height:104px;
+				font-size: 50px;
+				text-align: center;
+				line-height: 104px;
+			}
+			.play_controls a{
+				width:150px;
+				height:40px;
+				font-size: 50px;
+				text-decoration: none;
+				text-align: center;
+				padding:0 25px;
+				box-sizing: border-box;
+			}
+			.play_controls a:hover{
+				color:#FFFFFF;
+			}
+			.volume{
+				width:300px;
+				height:20px;
+				
+				background-color:chocolate;
+				padding-left:15px;
+				padding-right:15px;
+				box-sizing: border-box;
+				position: absolute;
+				bottom:10px;
+				right:115px;
+				
+			}
+			.volume a{
+			
+				height:2px;
+			}
+			.volume a:hover{
+			
+				color:#fff;
+			}
+			.volume span{
+				display: block;
+				width:50%;
+				height:5px;
+				background-color:darkred;
+				
+			}
+			#volumeOff{
+				float:left;
+				width:10px;
+			}
+			#volumeUp{
+				float:right;
+				width:10px;
+			}
+			.lt{
+				float:left;
+				color:#fff;
+				font-size: 18px;
+				margin-left:5px;
+				width:110px;
+				height:40px;
+			}
+			.rt{
+				float:right;
+				color:#fff;
+				font-size: 18px;
+				margin-right:25px;
+				width:30px;
+				height:40px;
+			}
+	
+			.play_list_area ul{
+				margin-top:40px;
+				
+			}
+			#btn_heart:hover{
+				color:#FFFFFF;
+			}
+			#btn_random:hover{
+					color:#FFFFFF;
+			}
+			#showHide{
+				color:#FFFFFF;
+			}
+			.volume_box{
+				float: left;
+				height: 5px;
+				width: 230px;
+				margin:7px 0 0 10px ;
+				background-color: #FFFFFF;
+				
+			}
+		</style>
+	</head>
+	<body>
+<!--//小视频		ctx.drawImage(player,0,0,300,300);-->
+		<audio id="player" src="audio/动物世界.mp3"></audio>
+		<div class="music">
+			<div class="play_list_area">
+				<ul id="play-play-list">
+				<!--	<li>
+						<span class="lt">十年</span>
+						<span class="rt">00:00</span>
+					</li>
+					<li>
+						<span class="lt">动物世界</span>
+						<span class="rt">00:00</span>
+					</li>-->
+				</ul>
+			</div>
+			<div class="music_info">
+				<div >
+					<img src="img/dongwushijie.jpg" class="left_photo"/>
+				</div>
+				<div class="center_list">
+					<span id="music_name" class="list_title">
+						动物世界
+					</span>
+					<span id="music_author" class="list_singer">
+						薛之谦
+					</span>
+				</div>
+				<div class="right_btn" >
+						<a id="btn_random" href="javascript:;">
+							<span class="random fa fa-random" onclick="playMode()"></span>
+						</a>
+						<a id="btn_list" href="javascript:;" >
+							<span id="showHide" class="list fa fa-list" onclick="showMusicList()"></span>
+						</a>
+						<a id="btn_heart" href="javascript:;">
+							<span class="heart fa fa-heart" id="heart"></span>
+						</a>
+				</div>
+				<div class="process">
+					<span id="process_slide" class="process_slide"></span>
+				</div>
+			</div>
+			
+			<div class="music_controls">
+				<div class="time">
+					00:00
+				</div>
+				<div class="play_controls">
+					
+						<a id="btnBackward" href="javascript:;" class="btn_back fa fa-backward" onclick="backward()"></a>
+						<a id="btnPlay" href="javascript:;" class="btn_play fa fa-play"></a>
+						<a id="btnForward" href="javascript:;" class="btn_forward fa fa-forward" onclick="forward()"></a>
+				</div>
+				<div class="volume">
+						<a id="volumeOff" class="volumeOff fa fa-volume-off" href="javascript:;" onclick="volumeOff()"></a>
+						<div class="volume_box">
+							<span id="volume_slide" class="btn_slide"></span>
+						</div>
+						<a id="volumeUp" class="volumeUp fa fa-volume-up" href="javascript:;" onclick="volumeUp()"></a>
+				</div>
+			</div>
+		
+			
+			
+			
+		</div>
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</body>
+	<script type="text/javascript">
+		
+var music_list =[
+		{
+			"id":"1",
+			"name":"动物世界",
+			"singer":"薛之谦",
+			"duration":"01:03",
+			"src":"audio/动物世界.mp3",
+			"images":"img/dongwushijie.jpg"
+		
+		},
+		{
+			"id":"2",
+			"name":"会呼吸的痛",
+			"singer":"梁静茹",
+			"duration":"02:45",
+			"src":"audio/会呼吸的痛.mp3",
+			"images":"img/huihuxidetong.jpg"
+		},		
+		{
+			"id":"3",
+			"name":"你还要我怎样",
+			"singer":"薛之谦",
+			"duration":"05:11",
+			"src":"audio/你还要我怎样.mp3",
+			"images":"img/nihaiyaowozenyang.jpg"
+		},	
+		{
+			"id":"4",
+			"name":"孙大剩",
+			"singer":"白亮 / 赵静",
+			"duration":"03:27",
+			"src":"audio/孙大剩.mp3",
+			"images":"img/sundasheng.jpg"
+		},	
+		{
+			"id":"5",
+			"name":"我",
+			"singer":"张国荣",
+			"duration":"05:21",
+			"src":"audio/我.mp3",
+			"images":"img/wo.jpg"
+		},	
+	]
+
+		//获取元素
+		//收藏  红心按钮
+		var heart=document.getElementById("heart")
+		//播放部分
+		//播放列表隐藏  显示按钮
+		var btn_list=document.getElementById("btn_list")
+		var btnPlay = document.querySelector("#btnPlay");
+		var player = document.querySelector("#player");
+		var play_list=document.querySelector("play_list_area");
+		//时间
+		var time=document.getElementsByClassName("time")[0];
+		//音量滑块
+		var volumeSlide=document.getElementsByClassName("volume_box")[0]
+		//切换部分
+		var list_title=document.getElementsByClassName("list_title")[0];
+		var list_singer=document.getElementsByClassName("list_singer")[0];
+		var left_photo=document.getElementsByClassName("left_photo")[0];
+		//播放进度条
+		var process=document.getElementsByClassName("process")[0]
+		//播放进度滑块
+		var process_slide=document.getElementsByClassName("process_slide")[0]
+		//动态加载播放列表
+		function loadMmusicList(){
+			
+			for (var i=0;i<music_list.length;i++){
+				var ul=document.getElementById("play-play-list");
+				var music=music_list[i];
+				//创建li
+				
+				var li=document.createElement('li');
+				//创建soan
+				
+				var span1=document.createElement("span");
+				var span2=document.createElement("span");
+				//设置自定义属性
+				li.setAttribute("data-index",i);
+				//给span  添加内容
+				span1.innerHTML=music_list[i].name;
+				span2.innerHTML=music_list[i].duration;
+				//把内容添加到li
+				li.appendChild(span1);
+				li.appendChild(span2);
+				
+				//把li添加到ul
+				ul.appendChild(li);
+				
+			
+				//设置样式
+				span1.classList.add("lt");
+				span2.classList.add("rt");
+				//点击歌曲
+				
+				li.addEventListener("click",function(){
+					//背景图片旋转
+					
+					
+					//歌曲信息的切换
+				var  index=this.getAttribute("data-index");
+					
+					play_index=index;
+					//重新载入歌曲信息
+					reloadMusic();
+					//播放当前点击的音乐
+					/*player.play();
+					btnPlay.setAttribute("class","btn_play fa fa-pause")*/
+					playMusic();
+				})
+				
+			}
+		}
+			function reloadMusic(){
+		var music=music_list[play_index];
+		//更改歌曲  名字  歌手名字   背景图片
+		left_photo.src=music.images;
+		list_title.innerHTML=music.name;
+		list_singer.innerHTML=music.singer;
+		player.src=music.src;
+			if(localStorage.getItem(music.id)){
+			heart.style.color="red";
+		}
+		else{
+			heart.style.color="#DDD";
+		}
+	}
+		
+			
+			//播放暂停功能 封装
+			function playMusic(){
+				clearInterval(timer);
+				timer=setInterval(fn1,10);
+				
+				player.play();
+				btnPlay.setAttribute("class","btn_play fa fa-pause")
+		
+				
+			}
+	
+		
+		
+		
+		
+			//播放暂停功能  点击事件
+		btnPlay.addEventListener("click",function(){
+			if (player.paused){
+		//		left_photo.setAttribute("class","left_photo_animation");
+				playMusic();
+				
+			}
+			else{
+				clearInterval(timer);
+		//		left_photo.setAttribute("class","left_photo");
+				player.pause();
+				btnPlay.setAttribute("class","btn_play fa fa-play")
+				
+			}
+			
+		})
+			
+			var timer;
+			var j=0;
+			function fn1(){
+				j++;
+				left_photo.style.transform='rotateZ('+j+'deg)';
+			}
+			
+			
+			//下一首音乐
+		function forward(){
+			if (play_index==music_list.length-1){
+				play_index=0;
+			}else{
+				play_index++
+			}
+			reloadMusic();
+			playMusic();
+		}
+			
+		//上一首音乐	
+		function backward(){
+			if (play_index==0){
+				play_index=music_list.length-1
+				
+			}else{
+				play_index--;
+			}
+				reloadMusic();
+				playMusic();
+		}
+			
+		//	静音功能
+			
+			function volumeOff(){
+				//0表示音量最小  1表示音量最大
+				//player.muted=true,也可以控制
+				player.volume=0;
+				volume_slide.style.width=0;
+			}
+			player.volume=0.5;
+		//最大音量	
+			function volumeUp(){
+				//player.muted=false,也可以控制
+				player.volume=1;
+				
+				volume_slide.style.width="100%";
+				
+			}
+		//转换  当前播放时间的函数
+		function timeFormate(time){
+			if (time>=3600){
+				var hour=parseInt(time/3600);
+				var minute=parseInt(time%3600/60)
+				var second=parseInt(time%3600)
+				minute=minute>=10?minute:"0"+minute;
+				second=second>=10?second:"0"+second;
+				hour=hour>=10?hour:"0"+hour;
+				return hour+":"+minute+":"+second;
+				
+			}else {
+				var minute=parseInt(time/60)
+				var second=parseInt(time%60)
+				minute=minute>=10?minute:"0"+minute;
+				second=second>=10?second:"0"+second;
+				return minute+":"+second;
+			}
+		}
+		timeFormate();
+		
+		//监测当前播放时间
+		window.setInterval(function(){
+			//计算百分比    播放的当前时间除以播放总时长
+			var percent=player.currentTime/player.duration;
+			//进度条的宽度等于   播放百分比乘以100   在拼接上%
+			process_slide.style.width = percent*100+"%";
+			//调用函数   timeFormate()   功能是转换当前播放时间    
+			//当前播放时间默认是   （3600） 秒  计算   需要转换成    00:00的格式     
+			//把转换后的时间添加到    显示播放时间的区域
+			time.innerHTML=timeFormate(player.currentTime)
+		},100)
+			
+		//	音量滑块
+		volumeSlide.addEventListener("click",function(event){
+			var percent=event.offsetX/this.offsetWidth;
+			player.volume=percent;
+		
+			volume_slide.style.width=percent*100+"%";
+		})
+			
+		//播放进度条
+		process.addEventListener("click",function(){
+			var percent=event.offsetX/this.offsetWidth;
+	
+			player.currentTime=player.duration*percent;
+	
+		})
+			
+			//播放列表的隐藏和显示
+			var showHide=document.getElementById("btn_list");
+			var music=document.getElementsByClassName("music")[0];
+			var play_list_area=document.getElementsByClassName("play_list_area")[0];
+		function showMusicList(){
+			if (flag){
+				play_list_area.style.display="none";
+				music.style.width="500px";
+				showHide.style.color="#666";
+				flag=false;
+			}else {
+				play_list_area.style.display="block";
+				music.style.width="700px";
+				showHide.style.color="#ddd";
+				flag=true;
+			}
+			
+		
+			
+		}
+			
+		//收藏  歌曲  爱心红心按钮的绑定事件
+		heart.addEventListener("click",function(){
+			var musicID=music_list[play_index].id;
+			if (localStorage.getItem(musicID)){
+				heart.style.color="#ddd";
+				localStorage.removeItem(musicID)
+				
+			}else {
+				heart.style.color="red";
+				localStorage.setItem(musicID,"true");
+			}
+		})
+			
+		//切换播放模式	
+		function playMode(){
+			switch (mark){
+				case 1:
+				mark++;
+				console.log("我变成单曲循环啦");
+				//切换图标
+				
+				//单曲循环
+				player.loop="loop";
+				break;
+				case 2:
+				mark++;
+				console.log("我变成列表循环啦!");
+				player.loop="";
+				break;
+				case 3:
+				console.log("我变成随机播放啦~");
+				player.loop="";
+				mark++;
+				break;
+				case 4:
+				mark=1;
+				console.log("我变成顺序播放啦~");
+				player.loop="";
+				break;
+			}
+		}
+			
+		player.onended=function(){
+			if (mark==1){
+				if (play_index!=music_list.length-1){
+					forward();
+					playMusic();
+				}
+			}
+			if (mark==3){
+				forward();
+				playMusic();
+			}
+			if (mark==4){
+				play_index=Math.floor(Math.random()*(music_list.length+1));
+				forward();
+				playMusic();
+			}
+		}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			var mark=1;
+			var flag=true;
+		var play_index=0;
+		loadMmusicList()
+
+		
+	
+	//重新加载歌曲信息
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</script>
+	
+</html>

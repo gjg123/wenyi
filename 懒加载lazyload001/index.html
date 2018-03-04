@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			img {
+				width: 48%;
+				height: 300px;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			懒加载:
+				并没有全部加载完毕,只显示一部分商品
+					减轻服务器压力
+			预加载:
+				loading...的时候
+				把资源加载进来
+				用户响应很快,服务器压力很大
+				
+			
+			原理:
+				一次性把所有的路径都拿过来!
+				但是,并没有把路径放到src中,而是放到自定义属性中,
+				当滚动到指定位置时,将自定义属性中的值,放回到src中,图片才会加载出来....
+		-->
+		
+		<img src="" alt="" data-src="img/search1.jpg"/>
+		<img src="" alt="" data-src="img/search2.jpg"/>
+		<img src="" alt="" data-src="img/search3.jpg"/>
+		<img src="" alt="" data-src="img/search4.jpg"/>
+		<img src="" alt="" data-src="img/search5.jpg"/>
+		<img src="" alt="" data-src="img/search6.jpg"/>
+		<img src="" alt="" data-src="img/search7.jpg"/>
+		<img src="" alt="" data-src="img/search8.jpg"/>
+		<img src="" alt="" data-src="img/search9.jpg"/>
+		<img src="" alt="" data-src="img/search10.jpg"/>
+		
+		
+		<script type="text/javascript">
+	
+		var imgs = document.querySelectorAll("img");
+			window.onscroll=function(){
+				//获取当前视口高度
+				var InnerHeight = window.innerHeight;
+				//滚动的高度
+				var ScrollTop = document.body.scrollTop;
+				
+				for(var i=0;i<imgs.length;i++){
+					if(imgs[i].offsetTop<InnerHeight+ScrollTop){
+						imgs[i].src = imgs[i].getAttribute("data-src");
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

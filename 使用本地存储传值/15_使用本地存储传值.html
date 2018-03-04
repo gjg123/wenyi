@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--跳转页面1-->
+		<a href="16_test.html">跳转到下个页面</a>
+		<script type="text/javascript">
+			localStorage.money="10000000000000000000000000";
+			//跳转页面2
+//			window.open("16_test.html")
+//			跳转页面3
+//			window.location.href="16_test.html";
+			
+			//url组成:
+//				协议名+主机名+端口号+文件路径+参数+锚点
+			
+//			http://123.222.3.12:8080/public/part/center/index.html?id=9527&name=wangcai#
+
+			//可以通过URL,对页面进行传值(把下一个页面需要用到的参数或者信息,扔到url中,下一个页面进行截取,就拿到啦~)
+			
+			console.log(window.location);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8"/>
+		<title></title>
+	</head>
+
+	<body>
+		<div id="box">
+			ooooooooooooooooooooooo
+		</div>
+		<p id="size-12">12</p>
+		<p id="size-14">14</p>
+		<p id="size-16">16</p>
+	</body>
+
+</html>
+<script type="text/javascript">
+	
+	//闭包的应用
+		function makeSizer(size) {
+		  return function() {
+		    document.getElementById('box').style.fontSize = size + 'px';
+		  };
+		}
+
+		var size12 = makeSizer(12);
+		var size14 = makeSizer(24);
+		var size16 = makeSizer(36);
+		
+		document.getElementById('size-12').onclick = size12;
+		document.getElementById('size-14').onclick = size14;
+		document.getElementById('size-16').onclick = size16;
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+</script>

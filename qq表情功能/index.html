@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="swiper/swiper.min.css" />
+		<style>
+			*{margin:0;padding: 0;}
+			body{
+				width: 100%;
+				min-width:300px;
+				max-width: 640px;
+				margin:0 auto;
+				overflow: hidden;
+			}
+			.J_textarea{
+				margin-bottom: 100px;
+			    width: 100%;
+			    font-size: 14px;
+			    line-height: 20px;
+			    color: #242424;
+			    background: 0 0;
+			    display: block;
+			    /*border: none;*/
+			    outline: 0;
+			    resize: none;
+			    border:1px solid #242424;
+			    box-sizing: border-box;
+			}
+			.swiper-slide{
+				position: relative;
+			}
+			.swiper-container{
+				width: 100%;
+			}
+			.swiper-container img{
+				display: block;
+				width: 100%;
+			}
+			.J_emoji{
+				position: absolute;
+				left: 0;
+				top:0;
+				width: 100%;
+				height: 100%;
+				list-style: none;
+			}
+			.J_emoji li{
+				float: left;
+			    width: 14.285%;
+			    height: 33.3333%;
+			    border: 1px solid red;
+			    box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<!--<div class="J_textarea">
+			<img src="img/qq/single/bq1.png" />
+		</div>-->
+		<textarea class="J_textarea"></textarea>
+		
+		 <div class="swiper-container">
+		 	<!--轮播的表情图片-->
+            <div class="swiper-wrapper">
+            	<div class="swiper-slide">
+            		<img src="img/qq/1.png" />
+            		<ul class="J_emoji">
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            		</ul>
+            	</div>
+            	<div class="swiper-slide">		
+            		<img src="img/qq/2.png" />
+            				<ul class="J_emoji">
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            		</ul>
+            	</div>
+            	<div class="swiper-slide">
+            		<img src="img/qq/3.png" />
+    				<ul class="J_emoji">
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            		</ul>
+            	</div>
+            	<div class="swiper-slide">
+            		<img src="img/qq/4.png" />
+    				<ul class="J_emoji">
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            		</ul>
+            	</div>
+            	<div class="swiper-slide">
+            		
+            		<img src="img/qq/5.png" />
+    				<ul class="J_emoji">
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            			<li></li>
+            		</ul>
+            	</div>
+            </div>
+            <!--滚动小点-->
+            <div class="swiper-pagination"></div>
+       </div>
+		
+	</body>
+</html>
+<script src="swiper/swiper.min.js"></script>
+<script>
+	var mySwiper = new Swiper('.swiper-container', {
+//			autoplay: 5000,//可选选项，自动滑动
+	})
+	
+	//获取外层父元素
+	var nd_wrapper = document.querySelector(".swiper-wrapper");
+	//表情集合
+	var  emojiItem = ["[/微笑]", "[/撇嘴]", "[/色]", "[/发呆]", "[/得意]", "[/流泪]", "[/害羞]", "[/闭嘴]", "[/睡]", "[/大哭]", "[/尴尬]", "[/发怒]", "[/调皮]", "[/呲牙]", "[/惊讶]", "[/难过]", "[/酷]", "[/冷汗]", "[/抓狂]", "[/吐]","","[/偷笑]", "[/可爱]", "[/白眼]", "[/傲慢]", "[/饥饿]", "[/困]", "[/惊恐]", "[/流汗]", "[/憨笑]", "[/大兵]", "[/奋斗]", "[/咒骂]", "[/疑问]", "[/嘘]", "[/晕]", "[/折磨]", "[/衰]", "[/骷髅]", "[/敲打]", "[/再见]","","[/擦汗]", "[/抠鼻]", "[/鼓掌]", "[/糗大了]", "[/坏笑]", "[/左哼哼]", "[/右哼哼]", "[/哈欠]", "[/鄙视]", "[/委屈]", "[/快哭了]", "[/阴险]", "[/亲亲]", "[/吓]", "[/可怜]", "[/菜刀]", "[/西瓜]", "[/啤酒]", "[/篮球]", "[/乒乓]", "[/咖啡]","", "[/饭]", "[/猪头]", "[/玫瑰]", "[/凋谢]", "[/示爱]", "[/爱心]", "[/心碎]", "[/蛋糕]", "[/闪电]", "[/炸弹]", "[/刀]", "[/足球]", "[/瓢虫]", "[/便便]", "[/月亮]", "[/太阳]", "[/礼物]", "[/拥抱]", "[/强]","", "[/弱]", "[/握手]", "[/胜利]", "[/抱拳]", "[/勾引]", "[/拳头]", "[/差劲]", "[/爱你]", "[/NO]", "[/OK]", "[/爱情]", "[/飞吻]", "[/跳跳]", "[/发抖]", "[/怄火]", "[/转圈]", "[/磕头]", "[/回头]", "[/跳绳]", "[/挥手]"];
+
+	
+	//绑定事件委托
+	nd_wrapper.onclick = function(ev){
+		var _ev = ev || window.event;
+		//事件源
+		var _target = _ev.target || _ev.srcElement;
+		//拿到索引
+		var _index = Array.prototype.slice.call(document.querySelectorAll('li')).indexOf(_target);
+		
+		var nd_textarea = document.querySelector(".J_textarea");
+		//删除功能
+		if( ((_index + 1) % 21) === 0  ){
+//	 		var _value =  nd_textarea.value.substring(0,nd_textarea.value.length-1);
+			var _value = "";
+			//判断最后一个字符如果是中括号的话 说明是表情
+			if(nd_textarea.value.charAt(nd_textarea.value.length-1) == ']'){
+				//删除表情
+				for(var i=nd_textarea.value.length;i >=0 ;i--){
+					if(nd_textarea.value.charAt(i)  == '['){
+						_value = nd_textarea.value.substring(0,i);
+						break;
+					}
+				}
+			}else{
+				_value =  nd_textarea.value.substring(0,nd_textarea.value.length-1);
+			}
+			nd_textarea.value = _value;
+		}else{
+			nd_textarea.value += emojiItem[_index];
+//			nd_textarea.innerHTML += "<img src=img/qq/single/bq"+(_index+1)+".png />";
+		}
+		
+	}
+	
+</script>

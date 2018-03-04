@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul li{
+				list-style: none;
+			}
+			
+			.wrap {
+				width: 1000px;
+				height: 400px;
+				margin: 0 auto;
+			}
+			
+			.wrap ul li {
+				float: left;
+				width: 100px;
+				height: 400px;
+				cursor: pointer;
+			}
+			
+			.wrap > ul > li:nth-child(1){
+				background: url(img/Ace.jpg) no-repeat center center;
+			}
+			.wrap > ul > li:nth-child(2){
+				background: url(img/Mountain.jpg) no-repeat center center;
+			}
+			.wrap > ul > li:nth-child(3){
+				background: url(img/Up.jpg) no-repeat center center;
+			}
+			.wrap > ul > li:nth-child(4){
+				background: url(img/yourname.jpg) no-repeat center center;
+				width: 700px;
+			}
+			
+			.wrap > ul > li > .title{
+				width: 100px;
+				height: 100%;
+				background: #000;
+				opacity: 0.5;
+			}
+			
+			
+			.wrap > ul > li > .title p{
+				color: #fff;
+				font-weight: bold;
+				padding: 20px 40px;
+				box-sizing: border-box;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<ul>
+				<li>
+					<div class="title">
+						<p>海贼王</p>
+					</div>
+				</li>
+				<li>
+					<div class="title">
+						<p>山</p>
+					</div>
+				</li>
+				<li>
+					<div class="title">
+						<p>飞屋环游记</p>
+					</div>
+				</li>
+				<li>
+					<div class="title">
+						<p>你的名字</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script src="lib/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".wrap li").click(function(){
+					$(this).css("width","700px").siblings("li").css("width","100px");
+				})
+			})
+		</script>
+	</body>
+</html>
